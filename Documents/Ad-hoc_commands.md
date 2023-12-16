@@ -1,5 +1,4 @@
-AD `:wq
-:HOCK COMMANDS:
+AD-HOCK COMMANDS:
 ----
 
 ### What is Ad Hock command ?
