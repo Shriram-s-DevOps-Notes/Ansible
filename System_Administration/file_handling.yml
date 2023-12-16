@@ -1,0 +1,74 @@
+---
+- hosts: localhost
+  ignore_errors: yes
+  become: yes
+  become_method: su
+  tasks:
+
+  # Task 1: User Input
+  - name: Enter the file path
+    pause:
+      prompt: "Please enter the file path"
+    register: path
+
+  # Task 2: Display Entered Path
+  - name: Entered path
+    debug:
+      msg: "{{ path['user_input'] }}"
+
+  # Task 3: Check for File/Directory Existence
+  - name: Checking for file/directory
+    stat:
+      path: "{{ path['user_input'] }}"
+    register: full_path
+
+  # Task 4: Handle Non-Existent Path
+  - name: If file or directory is not present
+    debug:
+      msg: "Path {{ path['user_input'] }} is not present under host {{ inventory_hostname }}"
+    when:
+      - full_path['stat']['exists'] == false
+
+  # Task 5: Handle Existing Path
+  - name: Checking if the path exists
+    debug:
+      msg: "Path {{ path['user_input'] }} is present under host {{ inventory_hostname }}"
+    when:
+      - full_path['stat']['exists'] == true
+
+  # Task 6: Handle File
+  - name: If it's a file
+    debug:
+      msg: "The entered path {{ path['user_input'] }} is a file" 
+    when:
+      - full_path['stat']['exists'] == true and full_path['stat']['isdir'] == false
+
+  # Task 7: Handle Directory
+  - name: If it's a directory
+    debug:
+      msg: "The entered path {{ path['user_input'] }} is a directory"
+    when:
+      - full_path['stat']['exists'] == true and full_path['stat']['isdir'] == true
+
+  # Task 8: User Permission Prompt
+  - name: Asking user's permission
+    pause:
+      prompt: "The file/directory is not present in the server. If you wish to create a file press '1' and for a directory press '2'"
+    when: full_path['stat']['exists'] == false
+    register: usr_inp
+
+  # Task 9: Create File
+  - name: Creating file
+    file:
+      dest: "{{ path['user_input'] }}"
+      state: touch
+    when: 
+      - full_path['stat']['exists'] == false and usr_inp['user_input'] == '1'
+
+  # Task 10: Create Directory
+  - name: Creating directory
+    file:
+      dest: "{{ path['user_input'] }}"
+      state: directory
+    when: 
+      - full_path['stat']['exists'] == false and usr_inp['user_input'] == '2'
