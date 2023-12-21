@@ -1,12 +1,12 @@
 
 ## Ansible Playbooks
 
-- Ansible playbook is YAML (Yet Another Markup Language) document, which as set of plays. A play is specific task. It uses the /usr/bin/ansible-playbook command to execute the playbooks.
+- The Ansible playbook is a YAML (Yet Another Markup Language) document, which is a set of plays. A play is a specific task. It uses the /usr/bin/ansible-playbook command to execute the playbooks.
 
 * Ansible playbooks are a way to send commands to remote computers in a scripted way.
 
-* Each playbo
-function. Ansible does this through something called tasks, which are basically module calls. A task can be anything like
+* Each playbook
+function. Ansible does this through something called tasks, which are module calls. A task can be anything like
 
 1. Execute a command
 
@@ -18,16 +18,16 @@ function. Ansible does this through something called tasks, which are basically 
 ---
 ### Ad hoc command Vs Playbook
 * Ansible can be used in either Ad-Hoc or Playbook mode.
-* The ad-hoc mode allows direct management of your hosts by executing single line commands and leveraging Ansible modules. 
-* Each Ansible playbook contains one or more plays to help you to perform functions on different host.
+* The ad-hoc mode allows direct management of your hosts by executing single-line commands and leveraging Ansible modules. 
+* Each Ansible playbook contains one or more plays to help you perform functions on different hosts.
 ---
 ### Playbook Sections
 Ansible playbooks are divided into 4-sections. 
 
-1. **Target Section:** In this section we have defined hosts against which playbook task has to execute.
+1. **Target Section:** In this section we have defined hosts against which the playbook task has to execute.
 2. **Variable Section:** In this section we have defined the variables used by plays.
-3. **Task Section:** In this section we can list of all modules that we need to run in the order.
-4. **Handler Section:** Handlers are ansible plays this are executed only when someone notifies.
+3. **Task Section:** In this section we can list all modules that we need to run in the order.
+4. **Handler Section:** Handlers are ansible plays that are executed only when someone notifies.
 
 Example:
 
@@ -46,7 +46,7 @@ Example:
 
 # Task Section:
   tasks:
-  - name: ensure apache is at the latest version
+  - name: Ensure Apache is at the latest version
     yum:
      name: ' {{ pkg_name }} '
      state: latest
@@ -59,22 +59,22 @@ handlers:
     name: httpd
     state: restarted
 ```
-* As we discussed earlier yum, service..etc are called as modules.
+* As we discussed earlier yum, service..etc are called modules.
 ---
 #### hosts:
-* In "hosts" section you have to specify in which host you want to run this playbook
-* For example if i want to run this playbook locally i will set host as **"localhost"**
+* In the "hosts" section you have to specify in which host you want to run this playbook
+* For example if I want to run this playbook locally I will set the host as **"localhost"**
 * If you want to run the playbook on all the hosts then set the hosts to **"all"**
-* You can set the host to perticular group also.
+* You can set the host to a particular group also.
 ---
 #### become:
-*  become word will allow ansible playbook root privilage.
+*  Become Word will allow Ansible playbook root privileges.
 * become method can also be set to **"su"** or **"sudo"** or **"root"**
 --- 
 #### gather_facts
-* When you run the playbook you may notice that even you did't mentioned there will be a section called gathering facts.
-* gather_fact will collect all the details like IP address, DNS server details, server-architecture and many more details from all the servers which you mentioned in your hosts section.
-* **Note: Fact gathering will only collect the fact's from the servers which we mentioned in "hosts" section.**
+* When you run the playbook you may notice that even if you didn't mention there will be a section called gathering facts.
+* gather_fact will collect all the details like IP address, DNS server details, server architecture, and many more details from all the servers that you mentioned in your hosts section.
+* **Note: Fact gathering will only collect the facts from the servers that we mentioned in the "hosts" section.**
 ```
 [root@ip-172-31-32-49 playbooks]# ansible-playbook test_1.yml
 
@@ -92,20 +92,20 @@ ok: [ec2-user]
 
 ---
 
-* To list all the modules in ansible run below commnad.
+* To list all the modules in Ansible run the below command.
 ```
 ansible-doc -l
 ```
 
-* In order to run the playbook exicute command
+* To run the playbook execute the command
 ```
 ansible-playbook <playbook file name>
 ```
 ---
 ### How to Verify Playbooks in Ansible?
 
-* Imagin you are running playbook directly on 10 servers and due to some error in your playbook all 10 servers got shutdown.
-* To over come this problem we have option in ansible to check weather the playbook is going to work as we planned.
+* Imagine you are running a playbook directly on 10 servers and due to some error in your playbook, all 10 servers got shut down.
+* To overcome this problem we have an option in Ansible to check whether the playbook is going to work as we planned.
 * There are 2 types of verification
 1. Check Mode
 2. Diff Mode
@@ -136,7 +136,7 @@ ansible-playbook <playbook-name> --syntax-check
 ```
 
 ## Variables in Ansible:
-* In Ansible, variables provide the much-needed flexibility in Playbooks, templates and inventories.
+* In Ansible, variables provide much-needed flexibility in Playbooks, templates, and inventories.
 
 1. **String variables** 
 * String variables in Ansible are sequences of characters.
@@ -147,7 +147,7 @@ Ex:
 username: "admin"
 ```
 2. **Number variables** 
-* Number variablesin Ansible can hold integer or floating-point values.
+* Number variables in Ansible can hold integer or floating-point values.
 
 * They can be used in mathematical operations.
 ```
@@ -171,11 +171,11 @@ debug_mode: true
 ---
 * **Ansible variables can be classified into two categories:**
 
-1. System defined variables (built-in variables):
+1. System-defined variables (built-in variables):
 ```
-hostvars, groups, group_names etc.
+hostvars, groups, group_names, etc.
 ```
-2.  User defined variables (custom variables):
+2.  User-defined variables (custom variables):
 ```
 myvar, var, var200, tune_01 etc.
 ```
@@ -193,7 +193,7 @@ The names below **do not qualify as valid variable names:**
 turn table, turn-table, 01turntable
 ```
 
-* Variables can be stored in inventory file's also
+* Variables can be stored in inventory files also
 
 ```
 web1 ansible_host=172.20.1.100
@@ -235,7 +235,7 @@ Ex-1:
       debug:
         msg: "Welcome {{ students }} "
 ```
-We can call single array element if want. The 1st array number start with **0**
+We can call a single array element if want. The 1st array number start with **0**
 
 Ex-2:
 ```
@@ -271,7 +271,7 @@ Ex-2:
      debug:
        msg: "Username: {{ user.name }}, Password: {{ user.password}}"
 ```
-* Suppose if you want to call 1st value.
+* Suppose you want to call 1st value.
 ```
 ---
  - hosts: all
@@ -288,7 +288,7 @@ Ex-2:
 ----
 ### Register Variables
 
-* If user want to store the variable then use Register
+* If a user wants to store the variable then use Register
 Ex:
 ```
 ---
@@ -301,11 +301,11 @@ Ex:
    - debug:
      var: result
 ```
-* The 1st play will cat the /etc/hosts in all the remote servers and it will store the output in **result** variable.
+* The 1st play will cat the /etc/hosts in all the remote servers and it will store the output in the **result** variable.
 
-* The 2nd play will display the output stored in register module.
+* The 2nd play will display the output stored in the register module.
 
-* The second method to capturing the output 
+* The second method of capturing the output 
 ```
 ansible-playbook <playbook-name> -v
 ```
@@ -314,7 +314,7 @@ ansible-playbook <playbook-name> -v
 ----
 ### Command line variable
 
-*  Variable's can be pass through command line also. This is also called as **GLOBAL VARIABLE**
+*  Variables can be passed through the command line also. This is also called as **GLOBAL VARIABLE**
 ```
 ansible-playbook <playbook-name> -e <variable's>
 ```
@@ -416,8 +416,8 @@ Example:
 
 * In some scenarios knowing the index value might come in handy. We can use the
 “with indexed_items” for this. 
-* The loop index will be available at item.0 and the
-value will be available at item.1. index value starts at zero as usual.
+* The loop index will be available at item 0 and the
+value will be available at item 1. The index value starts at zero as usual.
 
 Example:
 ```
