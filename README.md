@@ -1,9 +1,9 @@
 # ANSIBLE 
 
 # Configuration Management:
-* Configuration Management refers to the process of systematically handling changing to a system rather than manual.
+* Configuration Management refers to the process of systematically handling changes to a system rather than manually.
 
-* A configuration management tool is a software solution designed to automate the process of managing and maintaining the configuration of software applications and infrastructure components. 
+* A configuration management tool is a software solution designed to automate managing and maintaining the configuration of software applications and infrastructure components. 
 * It helps ensure consistency, reliability, and efficiency in the deployment and operation of IT systems. The primary goals of configuration management tools include:
 
 Example:
@@ -20,11 +20,15 @@ Example:
 - Improve software/hardware ownership knowledge and reliability
 - Proactively identify the high-risk failure points
 - Execute documentation management solutions for operational systems
-- Better understand change windows without the need to research each from scratch
+- Better understanding of change windows without the need to research each from scratch
 
 Push Based Vs Pull Based
 ------
-**Pull Based**: Agents on the server periodically checks for the configuration information from central server (Master).
+
+![Screenshot 2023-12-19 164008](https://github.com/Shriram-s-DevOps-Notes/Ansible/assets/110009356/30474acb-dac8-432a-bf78-088d09504003)
+
+
+**Pull Based**: Agents on the server periodically check for the configuration information from the central server (Master).
 
  **Push Based:** Central server pushes the configuration information on target servers. Control when the changes are made on the servers.
 
@@ -40,16 +44,16 @@ Push Based Vs Pull Based
 - Saltstack
 
 # ANSIBLE 
-### What is ansible ?
+### What is ansible?
 -------
 - Ansible is an open-source automation tool that simplifies various IT tasks, including configuration management, application deployment, and task automation. 
 - It is designed to be simple, consistent, and agentless, allowing for easy configuration and management of systems. 
-- Ansible uses a declarative language to describe the desired state of the system, making it easy to understand and maintain.
+- Ansible uses declarative language to describe the desired state of the system, making it easy to understand and maintain.
 
 ### How Ansible works?
-*  Ansible works on existing SSH connection.
-* Ansible doesn't not require to open any network port or no need required any agent installation.
-* We need enable the password less authentication (Key exchanging)
+*  Ansible works on existing SSH connections.
+* Ansible doesn't require to open any network port or no need required any agent installation.
+* We need to enable password-less authentication (Key exchanging)
 
 ### Use of Ansible:
 ------
@@ -62,7 +66,7 @@ Ansible is widely used for  configuring and managing the state of systems. It en
 
 **Orchestration:** Ansible facilitates the orchestration of complex workflows involving multiple systems. It allows you to coordinate tasks and manage dependencies, ensuring a smooth execution of processes.
 
-**Infrastructure as Code (IaC):** Ansible supports Infrastructure as Code, enabling you to define and manage infrastructure using code. This enhances reproducibility, scalability, and version control of your infrastructure.
+**Infrastructure as Code (IaC):** Ansible supports Infrastructure as Code, enabling you to define and manage infrastructure using code. This enhances the reproducibility, scalability, and version control of your infrastructure.
 
 ***Integration with Cloud Services:** Ansible seamlessly integrates with cloud platforms like AWS, Azure, and Google Cloud. This makes it a valuable tool for managing cloud resources and deploying applications in cloud environments.
 
