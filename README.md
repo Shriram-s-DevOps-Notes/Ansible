@@ -1,9 +1,55 @@
 # ANSIBLE 
+
+# Configuration Management:
+* Configuration Management refers to the process of systematically handling changing to a system rather than manual.
+
+* A configuration management tool is a software solution designed to automate the process of managing and maintaining the configuration of software applications and infrastructure components. 
+* It helps ensure consistency, reliability, and efficiency in the deployment and operation of IT systems. The primary goals of configuration management tools include:
+
+Example:
+* Ansible
+*  Puppet
+* Chef
+*  Saltstack
+
+**Advantages:**
+- Increasing up time.
+-  Improve performance.
+- Prevent errors.
+- Cost Reduction and Risks.
+- Improve software/hardware ownership knowledge and reliability
+- Proactively identify the high-risk failure points
+- Execute documentation management solutions for operational systems
+- Better understand change windows without the need to research each from scratch
+
+Push Based Vs Pull Based
+------
+**Pull Based**: Agents on the server periodically checks for the configuration information from central server (Master).
+
+ **Push Based:** Central server pushes the configuration information on target servers. Control when the changes are made on the servers.
+
+| Feature                       | Push-based tools (e.g., Ansible,Saltstack)                | Pull-based tools (e.g., Puppet, Chef)      |
+|-------------------------------|-------------------------------------------------|--------------------------------------------|
+| **Architecture**              | Agentless, central controller pushes changes    | Master-agent, nodes pull changes from server |
+| **Communication**             | SSH or other protocols                          | Agent daemon                                |
+| **Performance**               | Faster, simpler, more flexible                  | More scalable, reliable, consistent        |
+| **Complexity**                | Lower, easier to learn and use                  | Higher, require more programming knowledge |
+| **State Management**          | No built-in state management                    | Maintain state file to track resources     |
+| **Idempotency**               | Optional, depends on the tasks                  | Mandatory, ensure desired state            |
+| **Use Cases**                 | Configuration management and automation         | Infrastructure provisioning and management |
+- Saltstack
+
+# ANSIBLE 
 ### What is ansible ?
 -------
 - Ansible is an open-source automation tool that simplifies various IT tasks, including configuration management, application deployment, and task automation. 
 - It is designed to be simple, consistent, and agentless, allowing for easy configuration and management of systems. 
 - Ansible uses a declarative language to describe the desired state of the system, making it easy to understand and maintain.
+
+### How Ansible works?
+*  Ansible works on existing SSH connection.
+* Ansible doesn't not require to open any network port or no need required any agent installation.
+* We need enable the password less authentication (Key exchanging)
 
 ### Use of Ansible:
 ------
@@ -20,6 +66,22 @@ Ansible is widely used for  configuring and managing the state of systems. It en
 
 ***Integration with Cloud Services:** Ansible seamlessly integrates with cloud platforms like AWS, Azure, and Google Cloud. This makes it a valuable tool for managing cloud resources and deploying applications in cloud environments.
 
+----
+Ansible Vs Chef vs Puppet
+-------------------------------------
+| Feature                 | Ansible                                        | Puppet                                      | Chef                                      |
+|-------------------------|------------------------------------------------|---------------------------------------------|-------------------------------------------|
+| **Language**            | YAML                                           | Puppet DSL (Declarative)                     | Ruby DSL (Declarative and Procedural)      |
+| **Agent-Based**         | No                                             | Yes                                         | Yes                                       |
+| **Master-Node Setup**    | Not required                                   | Required                                    | Required                                  |
+| **Learning Curve**       | Low                                            | Moderate to High                            | Moderate to High                          |
+| **Ease of Use**          | Easy                                           | Moderate                                    | Moderate                                  |
+| **Architecture**         | Agentless                                      | Master-Slave (Client-Server)                | Master-Slave (Client-Server)              |
+| **Community Support**    | Large and Active                               | Large and Active                            | Large and Active                          |
+| **Configuration Syntax** | YAML                                           | Puppet DSL                                  | Ruby DSL                                  |
+| **Flexibility**          | Broad range of modules and integrations        | Rich set of modules and Puppet Forge        | Broad range of cookbooks and resources   |
+| **Scalability**          | Scales well for managing large infrastructures | Scales well for large environments         | Scales well for large environments 
+---------------------
 Terraform VS Ansible
 -----------------------------------------
 
