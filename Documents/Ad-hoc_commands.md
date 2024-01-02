@@ -66,7 +66,7 @@ ansible all -m file -a "dest=/tmp/sunil state=directory mode=755" --become
 * **To copy file from control machine to remote machine**
 
 ```
-ansible all -m file -a "src=/tmp/shriram.txt dest=/tmp" --become  
+ansible all -m copy -a "src=/tmp/shriram.txt dest=/tmp" --become  
 ```                    
 
 ### 5. yum module: yum module is used to manage the packages in servers
