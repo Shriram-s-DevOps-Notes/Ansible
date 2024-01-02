@@ -15,7 +15,7 @@ ubuntu   ansible_host=172.31.4.74   ansible_user=ansadmin
 1. INI(Initialization) Format
 2. YAML Format
 
-If you want to create the group of the servers
+If you want to create a group of servers
 1. **The INI format** is the simplest and
 most straightforward.
 
