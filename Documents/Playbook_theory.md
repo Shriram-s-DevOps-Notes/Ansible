@@ -432,3 +432,5 @@ Example:
     - "hello2"
     - "hello3"
 ```
+IMPORTANT_NOTE:
+- **After Ansible version 2.9 Red-Hat replaced "WITH_ITEM" with "loop"**
