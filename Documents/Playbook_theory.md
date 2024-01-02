@@ -419,6 +419,7 @@ Example:
         state: restarted
 ```
 ![image](https://github.com/Shriram-s-DevOps-Notes/Ansible/assets/110009356/c0b138cf-e43b-437a-8e66-3f9582220d53)
+
 Example-2:
 - Create a firewall and reload service
 ```
@@ -475,6 +476,7 @@ Example:
         - httpd
 ```
 - This is what is happening in the background
+
   ![image](https://github.com/Shriram-s-DevOps-Notes/Ansible/assets/110009356/47acd9e3-01d7-4687-a14e-39d15dc9a7ec)
 
 ### IMPORTANT_NOTE:
