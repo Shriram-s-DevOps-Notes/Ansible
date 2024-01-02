@@ -382,11 +382,73 @@ You can use **or**, **and** conditions.
     when: ansible_os_family == “RedHat”  or ansible_os_family == “SUSE”
 
 ```
+### Handlers
+----
+- Handlers are executed at the end of the play once all tasks are finished. In Ansible, handlers are typically used to start, reload, restart, and stop services.
+- Sometimes you want to run a task only when a change is made on a machine. For example, you may want to restart a service if a task updates the configuration of that service, but not if the configuration is unchanged.
+- Remember when we had to reload the Firewalld because we wanted to enable HTTP service? Yes, that is a perfect example of using handlers
+- So basically handlers are tasks that only run when notified
+- Each handler should have a globally unique name
+Example:
+```
+---
+  - name: Verify Apache installation
+    hosts: localhost
+    tasks:
+    - name: Ensure Apache is at the latest version
+      yum:
+        name: httpd
+        state: latest
+
+    - name: Copy updated Apache config file
+      copy:
+        src: tmp httpd.conf
+        dest: etc httpd.conf
+      notify:
+      - Restart apache
+
+    - name: Ensure Apache is running
+      service:
+        name: httpd
+        state: started
+
+    handlers:
+    - name: Restart Apache
+      service:
+        name: httpd
+        state: restarted
+```
+![image](https://github.com/Shriram-s-DevOps-Notes/Ansible/assets/110009356/c0b138cf-e43b-437a-8e66-3f9582220d53)
+Example-2:
+- Create a firewall and reload service
+```
+---
+  - name: Enable service on firewalld
+    hosts: localhost
+    tasks:
+    - name: Open port for http
+      firewalld
+        service: http
+        permanent: true
+        state: enabled
+      notify:
+      - Reload firewalld
+    - name: Ensure firewalld is running
+      service:
+        name: firewalld
+        state: started
+
+    handlers:
+    - name: Reload firewalld
+      service:
+        name: firewalld
+        state: reloaded
+```
 ---
 ### LOOPS 
 *  Ansible loops are a powerful feature that allows you to iterate over a set of items in a playbook.
 * We can execute the same task repeatedly we can go for loops.
-* Ansible loop provides a lot of methods to repeat certain tasks until a condition.
+* Ansible loop provides many methods to repeat certain tasks until a condition.
 - with_list
 - with_items
 - with_indexed_items
@@ -412,8 +474,28 @@ Example:
         - git
         - httpd
 ```
+- This is what is happening in the background
+  ![image](https://github.com/Shriram-s-DevOps-Notes/Ansible/assets/110009356/47acd9e3-01d7-4687-a14e-39d15dc9a7ec)
+
 ### IMPORTANT_NOTE:
 - **After Ansible version 2.9 Red-Hat replaced "with_items" with "loop"**
+
+- Adding variables and calling variables directly.
+```
+---
+  - name: Install packages thru loop
+    hosts: localhost
+    vars:
+      packages: [FTP, telnet, htop ]
+    tasks:
+    - name: Install packages
+      yum
+        name: ‘{{packages}}’
+        state: present
+```
+
+![image](https://github.com/Shriram-s-DevOps-Notes/Ansible/assets/110009356/69ac5a49-e81d-43a4-ae4c-1055f7fbc062)
+
 
 **Ansible loop with Index**
 
