@@ -36,10 +36,15 @@ Restart SSH service:
    systemctl restart sshd
    ```
 
-Set a password for the root user:
+Set a password for the root user and ansible user:
    ```bash
    passwd root
    ```
+
+   ```bash
+   passwd <user-name>
+   ```
+
 ------
 ### Control Node (Ubuntu):
 
@@ -86,6 +91,15 @@ Copy the SSH key to the remote node:
 Test the connection:
    ```bash
    ssh root@<IP-OF-Remote-Node>
+   ```
+Create Password for both root as well as for user which you created
+
+   ```
+   passwd root
+   ```
+
+   ```bash
+   passwd <user-name>
    ```
 
 
